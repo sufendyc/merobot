@@ -31,14 +31,15 @@ def find_next_target(x, dir = None):
             if is_unknown(surr[dir]):
                 next_target = surr[dir]
             elif is_hit(surr[dir]):
-                next_target = find_next_hit(surr[dir], dir)
-    else:
+                next_target = find_next_target(surr[dir], dir)
+    if not next_target:
         for dir, nex in surr.items():
             if is_unknown(nex):
                 next_target = nex
             elif is_hit(nex): 
                 next_target = find_next_target(nex, dir)
-                break
+                if next_target:
+                    break
     
     return next_target
     
