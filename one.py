@@ -23,7 +23,10 @@ class Robot:
             elif len(enemies_2) > 0:
                 #no enemy around, extend to 2nd radius
                 weakest_enemy = self.find_weakest(enemies_2)
-                return ['move', rg.toward(self.location, weakest_enemy.location)]
+                if rg.wdist(self.location, weakest_enemy.location) == 2:
+                    return ['attack', rg.toward(self.location, weakest_enemy.location)]
+                else:
+                    return ['move', rg.toward(self.location, weakest_enemy.location)]
                 
             return ['guard']
         #else:
